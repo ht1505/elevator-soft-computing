@@ -1,0 +1,129 @@
+{
+  "name": "hybrid_adaptive_research_run",
+  "seed": 42,
+  "building": {
+    "num_floors": 20,
+    "num_elevators": 4,
+    "capacity": 10
+  },
+  "traffic": {
+    "mode": "mixed",
+    "duration_seconds": 480,
+    "base_lambda_per_min": 3.2,
+    "spike_probability": 0.08
+  },
+  "objective": {
+    "alpha": 0.2,
+    "beta": 0.25,
+    "gamma": 3.0
+  },
+  "ga": {
+    "population": 24,
+    "generations": 40,
+    "crossover_rate": 0.85,
+    "mutation_rate": 0.15,
+    "elitism": 2
+  },
+  "fuzzy": {
+    "distance_near": [0.0, 0.0, 4.0],
+    "distance_medium": [2.0, 6.0, 10.0],
+    "distance_far": [7.0, 14.0, 25.0],
+    "load_light": [0.0, 0.0, 0.4],
+    "load_moderate": [0.2, 0.5, 0.8],
+    "load_heavy": [0.6, 1.0, 1.0],
+    "queue_short": [0.0, 0.0, 2.5],
+    "queue_medium": [1.5, 4.0, 7.0],
+    "queue_long": [5.0, 10.0, 20.0],
+    "output_very_low": 10.0,
+    "output_low": 30.0,
+    "output_medium": 55.0,
+    "output_high": 80.0,
+    "output_very_high": 95.0,
+    "default_score_if_no_rule": 25.0,
+    "epsilon": 1e-9
+  },
+  "fuzzy_adaptation": {
+    "peak_up_r10": 1.1,
+    "peak_up_r1": 1.05,
+    "peak_up_r9": 0.95,
+    "peak_down_r10": 1.1,
+    "peak_down_r2": 1.05,
+    "peak_down_r9": 0.95,
+    "inter_floor_r3": 1.12,
+    "inter_floor_r5": 1.08,
+    "inter_floor_r6": 0.95,
+    "weight_min": 0.2,
+    "weight_max": 1.8
+  },
+  "fuzzy_ga_param_space": {
+    "triangle_gene_count": 15,
+    "triangle_min": 0.0,
+    "triangle_max": 16.0,
+    "rule_weight_min": 0.6,
+    "rule_weight_max": 1.3,
+    "mutate_sigma_triangle": 0.6,
+    "mutate_sigma_rule": 0.08,
+    "tournament_k": 3
+  },
+  "route_ga": {
+    "generations": 30,
+    "population": 18,
+    "mutation_rate": 0.2,
+    "elites": 2,
+    "selection_pool_divisor": 2,
+    "min_route_length_for_optimization": 3,
+    "reversal_penalty": 1.8
+  },
+  "runtime": {
+    "travel_time_per_floor_base": 3.0,
+    "travel_time_noise_std": 0.45,
+    "travel_time_per_floor_min": 2.2,
+    "fault_probability_per_tick": 0.0015,
+    "fault_duration_min_seconds": 12.0,
+    "fault_duration_max_seconds": 45.0,
+    "energy_up_base": 1.0,
+    "energy_up_load_factor": 0.08,
+    "energy_down_base": 0.7,
+    "energy_down_load_factor": 0.06,
+    "max_floor_step_per_tick": 1.0,
+    "passenger_group_max_base": 3,
+    "passenger_group_max_spike": 4,
+    "simulation_step_seconds": 1.0,
+    "realtime_interval_seconds": 30
+  },
+  "dynamic_traffic": {
+    "window_size": 30,
+    "min_samples_for_mode_detection": 6,
+    "peak_ratio_threshold": 0.68,
+    "inter_floor_diversity_threshold": 0.5,
+    "inter_floor_span_threshold": 5
+  },
+  "benchmark": {
+    "ga_tuning_duration_seconds": 180
+  },
+  "explainability": {
+    "max_saved_decisions_per_run": 120
+  },
+  "visualization": {
+    "dpi": 140,
+    "label_rotation": 25,
+    "convergence_color": "#0b7285",
+    "wait_bar_color": "#2f9e44",
+    "fairness_bar_color": "#e67700",
+    "heatmap_cmap": "YlGnBu"
+  },
+  "toggles": {
+    "adaptive_fuzzy": true,
+    "use_ga_for_fuzzy": true,
+    "use_ga_for_routes": true,
+    "enable_faults": true,
+    "enable_stochastic_delay": true,
+    "enable_spike_events": true
+  },
+  "scenarios": [
+    "peak_up",
+    "peak_down",
+    "inter_floor",
+    "mixed"
+  ]
+}

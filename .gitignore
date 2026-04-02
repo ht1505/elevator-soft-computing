@@ -1,0 +1,50 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache/
+.cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Build and packaging artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test and coverage artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temp and swap
+*.tmp
+*.swp
+*.swo
+
+# Java/class artifacts
+*.class
+
+# Local notebooks/checkpoints
+.ipynb_checkpoints/
+
+# Generated images and demo outputs
+*.png
+Demo/*.png

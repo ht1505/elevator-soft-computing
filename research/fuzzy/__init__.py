@@ -1,0 +1,1 @@
+"""Adaptive fuzzy inference system."""
