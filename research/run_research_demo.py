@@ -7,7 +7,7 @@ from research.evaluation.benchmark import run_benchmarks
 from research.fuzzy.adaptive_system import AdaptiveFuzzySystem
 from research.simulation.environment import StochasticElevatorEnvironment
 from research.strategies.hybrid_adaptive import HybridAdaptiveDispatch
-from research.visualization.plots import create_plots
+from research.visualization.plots import generate_all_plots
 from research.visualization.realtime import render_snapshot
 
 
@@ -56,14 +56,11 @@ def main() -> None:
     out_json = root / "results" / "benchmark_results.json"
     dump_results(out_json, results)
 
-    generated = create_plots(results, root / "results", cfg.visualization)
+    generate_all_plots(results, cfg.visualization)
 
     print("Research benchmark completed.")
     print(f"Results file: {out_json}")
-    if generated:
-        print("Generated plots:")
-        for p in generated:
-            print(f"  - {p}")
+    print("Plots saved to research/results/")
 
     print("\nSummary:")
     for strategy, stats in results.get("summary", {}).items():

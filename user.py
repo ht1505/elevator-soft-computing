@@ -13,7 +13,7 @@ from research.core.config import (
     dump_results,
 )
 from research.evaluation.benchmark import run_benchmarks
-from research.visualization.plots import create_plots
+from research.visualization.plots import generate_all_plots
 
 
 def _read_int(prompt: str, default: int, minimum: int | None = None, maximum: int | None = None) -> int:
@@ -138,14 +138,11 @@ def _run_research_mode() -> None:
 
     out_json = out_dir / "benchmark_results_user.json"
     dump_results(out_json, results)
-    plots = create_plots(results, out_dir, cfg.visualization)
+    generate_all_plots(results, cfg.visualization)
 
     print("\n=== Benchmark Completed ===")
     print(f"Results JSON: {out_json}")
-    if plots:
-        print("Plots:")
-        for p in plots:
-            print(f"- {p}")
+    print("Plots saved to research/results/")
 
     print("\n=== Strategy Summary ===")
     for strategy, stats in results.get("summary", {}).items():
